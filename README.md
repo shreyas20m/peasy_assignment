@@ -32,3 +32,5 @@ rails -> 7.1.2
 start sidekiq bundle exec sidekiq -q create_user_job -c 1 -C config/sidekiq_config/create_user_job.yml
 
 bundle exec sidekiq -q daily_record_job -c 1 -C config/sidekiq_config/daily_record_job.yml
+
+I faced issues for Liquid, so I used rails for UI
