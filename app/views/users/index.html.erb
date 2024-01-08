@@ -1,0 +1,43 @@
+<h1>Total Users :: <%= @total_users_count%></h1>
+
+<h2> <%= link_to "View Daily Record", "/daily_records"%></h2>
+<%search_value = params[:search].to_s%>
+<div>
+  <label for="search">Search:</label>
+  <input type="text" id="search" name="search" value="<%=search_value%>" onchange="searchUsers(this.value)">
+
+</div>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Created At</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.age %></td>
+        <td><%= user.gender %></td>
+        <td><%= user.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td>
+          <form action="<%= user_path(user.id) %>" method="delete">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete">
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  function searchUsers(query) {
+    window.location.href = '<%= users_path %>?search=' + encodeURIComponent(query);
+  }
+</script>

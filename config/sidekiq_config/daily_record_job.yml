@@ -1,0 +1,7 @@
+:scheduler:
+  :schedule:
+    create_user_job:
+      cron: '0 0 * * *'
+      #every: '1m'
+      class: DailyRecordJob
+      queue: daily_record_job
